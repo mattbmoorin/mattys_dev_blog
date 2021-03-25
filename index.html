@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>c o m i c f u t u r i s t i c c y b e r b l o g</title>
+  </head>
+
+  <body>
+    <h1>C0SMIC FUTURISTIC CYBERBLOG</h1>
+    <br />
+    <br />
+    <h3>Thursday - March 25 - 2021</h3>
+    --------------------------
+    <h4>Event Bubbling as Observed by a JS Greenhorn</h4>
+    <br />
+    <p>
+      As a disclaimer, this is by no means meant to be a comprehensive analysis
+      of 'Event Bubbling' in JavaScript, and it is solely referring to
+      JavaScript running inside of the browser. It most specifically pertains to
+      the reinforcement of my understanding of the use of Event Listeners. It is
+      simply a product of my musing on the subject and hopefully it will offer a
+      good resource of understanding for other like-minded beginners.
+    </p>
+    <p>
+      At the beginning of my JavaScript studies, the way I was thinking of
+      Events was a detriment to my progress. I think this is partly to blame on
+      one of the more common ways that I see the concept of 'Event Bubbling'
+      being explained. In almost all explanations I see and hear of this concept
+      aside from official documentation, 'Bubbling' could almost be mistaken for
+      an individual process that happens independent of anything else. In fact,
+      'Event Bubbling' is more accurately described as the 'Bubbling Phase' of
+      <strong>'Event Dispatch'</strong>.
+    </p>
+    <br />
+    <img
+      src="https://www.w3.org/TR/DOM-Level-3-Events/images/eventflow.svg"
+      alt="this should be an image :^("
+      height="480"
+      width="640"
+    />
+    <br />
+    <p>
+      <strong>'Event Dispatch'</strong> in JavaScript consists of 3 phases:
+      <br />
+      <li><em>the Capture Phase</em></li>
+      <li><em>the Target Phase</em></li>
+      <li><em>the Bubbling Phase</em></li>
+      <br />
+      For me, understanding that 'Bubbling' is really just the last part of a
+      much larger process really helped drive this concept home.
+    </p>
+    <p>
+      The DOM is assembled using a Tree data structure. The really important
+      aspect of this concept is that (most every event*) is dispatched from
+      <strong>the <em>Global Object</em>, the top of the DOM tree.</strong> I
+      think it is really easy for a beginner to fall into the misunderstanding
+      that the Event is somehow magically created directly on the target when
+      using an event listener. The keyword in event listener, is
+      <em>'listener'</em>.
+    </p>
+    <p>
+      An event is simply just another <strong>object</strong>. When an event
+      object is triggered for dispatch, a <strong>'Propagation Path'</strong> is
+      determined which leads the event object from the top of the tree (the
+      global object), down through the nodes that lie within the path, and then
+      back up to the top. In general*, that event exists the moment it is
+      triggered regardless of whether or not we are looking for it. To
+      reiterate, when one leaves out or simply glosses over this important
+      aspect, it is easy to assume that you creating the event directly on the
+      target. I have found that a really helpful way to think of this is
+      comparing the event object's <strong>'Propagation Path'</strong> through
+      the DOM tree to a basic closed electronic circuit.
+    </p>
+    <br />
+    <a href="https://ibb.co/5RXyDWL"
+      ><img
+        src="https://i.ibb.co/gRbp1MJ/dom-prop-path-event-circuit.jpg"
+        alt="dom-prop-path-event-circuit"
+        border="0"
+    /></a>
+    <br />
+    <p>
+      In a closed circuit, current flow requires a source of electrons with a
+      force to move them, and a return point for those electrons. The Global
+      Object in this instance is almost like a 9 volt battery providing the
+      source of 'electrons' to our circuit. The electricity flowing through the
+      components starts (and generally* ends) with the electrons flowing back to
+      the positive terminal on the battery. The individual components that make
+      up the circuit could perhaps be likened to the DOM nodes within the event
+      object's 'Propagation Path'. The electons themselves in this instance
+      would be the Event Object, and the target could be compared to something
+      like a lamp (or as it is oft erroneously referred to, a 'light bulb') in
+      the circuit. One flips a power switch (triggers an event) and a light
+      comes on (event object reaches the target node). That may be the most
+      immediately observable effect of engaging the switch, but of course there
+      is more to it than that.
+    </p>
+    <p>
+      Now, one incredibly important thing to note here, is that our 'electrons'
+      in our 'Propagation Path circuit' will <strong>ONLY</strong> flow towards
+      the target. Which is to say, when the event object arrives at a so-called
+      'fork in the road', it will only affect the path that contains its target.
+      For example, in the image of the DOM tree above where the
+      <code>tbody</code> node contains two nested <code>tr</code> nodes which
+      then contain two nested <code>td</code> nodes, one can observe that the
+      'Propagation Path' only moves through the nodes that are nesting the event
+      target.
+    </p>
+    <p>
+      Considering that one of, if not the most, prominent use cases of JS is to
+      make elements interact with each other by way of triggering events,
+      listening for and manipulating those events, it would stand to reason that
+      a fundamental understanding of such, would be requisite for moving forward
+      to more advanced concepts and implementation. At the very least, having a
+      grasp on even just this aspect of the mechanics of event objects has made
+      life easier on me as I learn. I hope that my fellow beginners who stumble
+      upon this piece may find it of some use.
+    </p>
+    <p><strong>Refrences:</strong>
+    <br />
+    <a href=https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture>https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture</a><br />
+    <a href=https://www.kirupa.com/html5/event_capturing_bubbling_javascript.htm>https://www.kirupa.com/html5/event_capturing_bubbling_javascript.htm</a><br />
+    <a href=https://javascript.info/bubbling-and-capturing>https://javascript.info/bubbling-and-capturing</a><br />
+    </p>
+    <style>
+      html {
+        background-color: #151011;
+      }
+
+      body {
+        color: whitesmoke;
+      }
+    </style>
+  </body>
+</html>
