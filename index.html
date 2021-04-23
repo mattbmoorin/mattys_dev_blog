@@ -1,143 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>c o m i c f u t u r i s t i c c y b e r b l o g</title>
   </head>
-  
+
   <body>
     <sup><a href='mailto:sourceofuncertainty@mailfence.com'>ping me here</a>
-    <h1>C0SMIC FUTURISTIC CYBERBLOG</h1>
-    <br />
-    <br />
-    <h3>Thursday - March 25 - 2021</h3>
-    --------------------------
-    <h4>Event Bubbling as Observed by a JS Greenhorn</h4>
-    <br />
-    <p>
-      As a disclaimer, this is by no means meant to be a comprehensive analysis
-      of 'Event Bubbling' in JavaScript, and it is solely referring to
-      JavaScript running inside of the browser. It most specifically pertains to
-      the reinforcement of my understanding of the use of Event Listeners. It is
-      simply a product of my musing on the subject and hopefully it will offer a
-      good resource of understanding for other like-minded beginners.
-    </p>
-    <p>
-      At the beginning of my JavaScript studies, the way I was thinking of
-      Events was a detriment to my progress. I think this is partly to blame on
-      one of the more common ways that I see the concept of 'Event Bubbling'
-      being explained. In almost all explanations I see and hear of this concept
-      aside from official documentation, 'Bubbling' could almost be mistaken for
-      an individual process that happens independent of anything else. In fact,
-      'Event Bubbling' is more accurately described as the 'Bubbling Phase' of
-      <strong>'Event Dispatch'</strong>.
-    </p>
-    <br />
-    <img
-      src="https://www.w3.org/TR/DOM-Level-3-Events/images/eventflow.svg"
-      alt="this should be an image :^("
-      height="480"
-      width="640"
-    />
-    <br />
-    <p>
-      <strong>'Event Dispatch'</strong> in JavaScript consists of 3 phases:
+      <h1>C0SMIC FUTURISTIC CYBERBLOG</h1>
       <br />
-      <li><em>the Capture Phase</em></li>
-      <li><em>the Target Phase</em></li>
-      <li><em>the Bubbling Phase</em></li>
       <br />
-      For me, understanding that 'Bubbling' is really just the last part of a
-      much larger process really helped drive this concept home.
-    </p>
-    <p>
-      The DOM is assembled using a Tree data structure. The really important
-      aspect of this concept is that (most every event*) is dispatched from
-      <strong>the <em>Global Object</em>, the top of the DOM tree.</strong> I
-      think it is really easy for a beginner to fall into the misunderstanding
-      that the Event is somehow magically created directly on the target when
-      using an event listener. The keyword in event listener, is
-      <em>'listener'</em>.
-    </p>
-    <p>
-      An event is simply just another <strong>object</strong>. When an event
-      object is triggered for dispatch, a <strong>'Propagation Path'</strong> is
-      determined which leads the event object from the top of the tree (the
-      global object), down through the nodes that lie within the path, and then
-      back up to the top. In general*, that event exists the moment it is
-      triggered regardless of whether or not we are looking for it. To
-      reiterate, when one leaves out or simply glosses over this important
-      aspect, it is easy to assume that you are creating the event directly on the
-      target. I have found that a really helpful way to think of this is
-      comparing the event object's <strong>'Propagation Path'</strong> through
-      the DOM tree to a basic closed electronic circuit.
-    </p>
-    <br />
-    <a href="https://ibb.co/5RXyDWL"
-      ><img
-        src="https://i.ibb.co/gRbp1MJ/dom-prop-path-event-circuit.jpg"
-        alt="dom-prop-path-event-circuit"
-        border="0"
-    /></a>
-    <br />
-    <p>
-      In a closed circuit, current flow requires a source of electrons with a
-      force to move them, and a return point for those electrons (note that 
-      electrons flow from negative to positive). The Global
-      Object in this instance is almost like a 9 volt battery providing the
-      source of 'electrons' to our circuit. The electricity flowing through the
-      components starts (and generally* ends) with the electrons flowing back to
-      the positive terminal on the battery. The individual components that make
-      up the circuit could perhaps be likened to the DOM nodes within the event
-      object's 'Propagation Path'. The electons themselves in this instance
-      would be the Event Object, and the target could be compared to something
-      like a lamp (or as it is oft erroneously referred to, a 'light bulb') in
-      the circuit. One flips a power switch (triggers an event) and a light
-      comes on (event object reaches the target node). That may be the most
-      immediately observable effect of engaging the switch, but of course there
-      is more to it than that.
-    </p>
-    <p>
-      Now, one incredibly important thing to note here, is that our 'electrons'
-      in our 'Propagation Path circuit' will <strong>ONLY</strong> flow towards
-      the target. Which is to say, when the event object arrives at a so-called
-      'fork in the road', it will only affect the path that contains its target.
-      For example, in the image of the DOM tree above where the
-      <code>tbody</code> node contains two nested <code>tr</code> nodes which
-      then contain two nested <code>td</code> nodes, one can observe that the
-      'Propagation Path' only moves through the nodes that are nesting the event
-      target.
-    </p>
-    <p>
-      Considering that one of, if not the most, prominent use cases of JS is to
-      make elements interact with each other by way of triggering events,
-      listening for and manipulating those events, it would stand to reason that
-      a fundamental understanding of such, would be requisite for moving forward
-      to more advanced concepts and implementation. At the very least, having a
-      grasp on even just this aspect of the mechanics of event objects has made
-      life easier on me as I learn. I hope that my fellow beginners who stumble
-      upon this piece may find it of some use.
-    </p>
-    <p><strong>Refrences:</strong>
+      <h4><u>Musings on React and a Quick Hook Overview From a Complete Beginner</u></h4>
       <br />
-      <a href=https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture>https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture</a><br />
-      <a href=https://www.kirupa.com/html5/event_capturing_bubbling_javascript.htm>https://www.kirupa.com/html5/event_capturing_bubbling_javascript.htm</a><br />
-      <a href=https://javascript.info/bubbling-and-capturing>https://javascript.info/bubbling-and-capturing</a><br />
-    </p>
-    <sup>* - denotes I realize there may be an exception to this statement of some kind.</sup>
-    <style>
-      html {
-        background-color: #151011;
-      }
+      <p>
+        React, referred to as a "Library" via the official docs, seems to me much more of a full-fledged javaScript
+        Framework. This also would appear to be the general consensus
+        of most of the community as per Stack Overflow and other similar resources of popular programmer opinion. Based
+        on my research, React (and the other popular component based frameworks/libraries)
+        appears to be heavily based on XAML and XML. Take a look at this example of XAML if you aren't familiar,
+        you'll see this component based way of thinking and JSX's syntax is nothing new:
+      </p>
+   
+              <a href=https://www.tutorialspoint.com/xaml/xaml_vs_csharp_code.htm>XAML example</a><br />
+      <sup><em>hmmm looks familiar....</em></sup>
+      <br />
+      <p>
 
-      body {
-        color: whitesmoke;
-        text-align: left;
-        margin-right: 25%;
-        margin-left: 20%;
-      }
-    </style>
+        
+        I certainly have mixed feelings about it, albeit uninformed by actual experience. That said, I do find it a
+        fascinating work of clever metaprogramming in its own right. So far though, I'd have to echo the sentiment of many
+        very experienced programmers that this component based way of thinking simply introduces more problems than it actually
+        solves, and that javaScript as a language is inherently strong enough at this point to handle things on its own. It
+        would seem to me based on my research and experience so far, that the true main purpose of these libraries is to establish
+        a universal convention for woking with teams, at the expense of introducing an entirely new layer of complexity, huge directories containing
+        myriad files, and a short compile stage. Of course one could easily understand the merit to streamlining team interaction, but perhaps a convention
+        that is not based on this workflow would lead to overall more efficacy? 
+      </p>
+      <p>
+        React is also heavily reliant on the concept of state. Stateful components are essentially modeled after an archetypal concept of an abstract state machine. Using 
+        the concept of state in programming, from what I gather thus far in my programming journey, generally locks you into Object-Oriented design patterns.
+        So far, I personally am not necessarily a fan of the idea of Object-Oriented programming, and I certainly do not think javaScript was intended to be written in such a way.
+        However, React has recently introduced the concept of hooks for its "functional" components. While this does not necessarily change the fact that it is still based  on
+        an Object-Oriented style design pattern overall, it at least saves one from ever having to touch Class syntax outside of a legacy codebase or one where a team made a concious decision to stick
+        to using this syntax. Situations where one is forced to heave even more boiler plate into their codebase.
+      </p>
+      <p>
+        There are two hooks in particular that are sort of defacto replacements for using state and methods such as componentDidMount in classes:
+        <ul>
+          <b>useState</b>
+        </ul>
+        <sup><em>
+          and
+        </em></sup>
+        <ul>
+          <b>useEffect</b>
+        </ul>  
+        </p>
+        <p>
+
+          Hooks let one "hook into" React state and lifecycle feautures using a purely functional component syntax and are declared as such:
+          <br />
+          <br />
+          <br />
+          <h7><em>useState</em></h7><br />
+          <code>
+            ...<br />
+            const [something, setSomething] = useState(null);<br />
+            
+            ...
+            <br /></code>
+          </p>
+       <p>
+         Here, using <em>array destructuring syntax</em>, <code>something</code> is essentially what one would set in an <code>initialState</code> variable, and <code>setSomething</code> is a function that one
+         would use to update the state variable. <code>useState</code> will return the current state value and the function that was declared to update it. The argument it is being passed in the 
+         example is what actually sets our intitial state and it is only used doing the first render. <code>useState</code> is similar to <code>this.setState</code> howver it does not merge the old 
+         and new state together. Additionally, <code>useState</code> does not have to take a javaScript object as it's value, however it can should one want it to. The State Hook can be used as many
+         times as needed in a single component. 
+        </p>
+        <p>
+          <br />
+          <br />
+          <br />
+
+          <h7><em>useEffect</em></h7><br />
+          <code>
+            ...<br />
+            useEffect(() => {
+              document.title = `You did {something}!;
+            });<br />
+            ...
+            <br /></code>
+        </p>
+        <p>
+          <code>useEffect</code> tells React to do something after flushing changes to the DOM. This is also done inside a component in order to have access to its props and state. In this example, <code>useEffect</code>, 
+          is being used as a direct replacement for the <code>componentDidMount</code> method. In fact, this hook was designed to be an alternative to all of the  <code>componentDid...</code> methods, brought 
+          together into a single API. There are also additional specifications one can use with Effects, such as when the component using it will unmount and how it will clean up after itself. Exactly like 
+          <code>useState</code>, <code>useEffect</code> can be used as many times as needed within the same component, allowing one to organize side effects by which ones are related to one another, as opposed
+          to forcing splits based on lifecycle methods.
+        </p>
+        <p>
+          Perhaps not the most in depth introduction to hooks, but hopefully for other beginners who were for whatever reason being bombarded with nothing but information on how to work with Class syntax in React at
+          the early stages of their learning, this provides a good accompaniment to the official documentation (which this is clearly based heavily upon). Sometimes it just helps to read the same thing twice but worded
+          a bit differently! At least for me. That said, I urge all React users to adopt the official docs as Bible. It is a seemingly rare treat for documentation to be written so succinctly. I also hope that the opinions
+          expressed towards Object Orientation here would also spark other beginners' interest in functional programming and other design patterns, or at least to prompts one to pose themselves a question that
+          I find myself pondering quite often: Am I being taught to do things a certain way because it is the most efficient? Or is it convention for convention's sake? Do lots of directories and files make my life
+          easier all of the time? Or do they add a lot of unnecessary complexity to what would otherwise be a lightweight project?
+        </p>
+        <p><strong>Refrences:</strong>
+        <br />
+        <a
+          href=https://www.youtube.com/watch?v=yQSzoSRy3q4>https://www.youtube.com/watch?v=yQSzoSRy3q4</a><br />
+        <a
+          href=https://reactjs.org/docs/hooks-overview.html>https://reactjs.org/docs/hooks-overview.html</a><br />
+      </p>
+      <br />
+      <h4><u>Event Bubbling as Observed by a JS Greenhorn</u></h4>
+      <br />
+      <p>
+        As a disclaimer, this is by no means meant to be a comprehensive analysis
+        of 'Event Bubbling' in JavaScript, and it is solely referring to
+        JavaScript running inside of the browser. It most specifically pertains to
+        the reinforcement of my understanding of the use of Event Listeners. It is
+        simply a product of my musing on the subject and hopefully it will offer a
+        good resource of understanding for other like-minded beginners.
+      </p>
+      <p>
+        At the beginning of my JavaScript studies, the way I was thinking of
+        Events was a detriment to my progress. I think this is partly to blame on
+        one of the more common ways that I see the concept of 'Event Bubbling'
+        being explained. In almost all explanations I see and hear of this concept
+        aside from official documentation, 'Bubbling' could almost be mistaken for
+        an individual process that happens independent of anything else. In fact,
+        'Event Bubbling' is more accurately described as the 'Bubbling Phase' of
+        <strong>'Event Dispatch'</strong>.
+      </p>
+      <br />
+      <img src="https://www.w3.org/TR/DOM-Level-3-Events/images/eventflow.svg" alt="this should be an image :^("
+        height="480" width="640" />
+      <br />
+      <p>
+        <strong>'Event Dispatch'</strong> in JavaScript consists of 3 phases:
+        <br />
+        <li><em>the Capture Phase</em></li>
+        <li><em>the Target Phase</em></li>
+        <li><em>the Bubbling Phase</em></li>
+        <br />
+        For me, understanding that 'Bubbling' is really just the last part of a
+        much larger process really helped drive this concept home.
+      </p>
+      <p>
+        The DOM is assembled using a Tree data structure. The really important
+        aspect of this concept is that (most every event*) is dispatched from
+        <strong>the <em>Global Object</em>, the top of the DOM tree.</strong> I
+        think it is really easy for a beginner to fall into the misunderstanding
+        that the Event is somehow magically created directly on the target when
+        using an event listener. The keyword in event listener, is
+        <em>'listener'</em>.
+      </p>
+      <p>
+        An event is simply just another <strong>object</strong>. When an event
+        object is triggered for dispatch, a <strong>'Propagation Path'</strong> is
+        determined which leads the event object from the top of the tree (the
+        global object), down through the nodes that lie within the path, and then
+        back up to the top. In general*, that event exists the moment it is
+        triggered regardless of whether or not we are looking for it. To
+        reiterate, when one leaves out or simply glosses over this important
+        aspect, it is easy to assume that you are creating the event directly on the
+        target. I have found that a really helpful way to think of this is
+        comparing the event object's <strong>'Propagation Path'</strong> through
+        the DOM tree to a basic closed electronic circuit.
+      </p>
+      <br />
+      <a href="https://ibb.co/5RXyDWL"><img src="https://i.ibb.co/gRbp1MJ/dom-prop-path-event-circuit.jpg"
+          alt="dom-prop-path-event-circuit" border="0" /></a>
+      <br />
+      <p>
+        In a closed circuit, current flow requires a source of electrons with a
+        force to move them, and a return point for those electrons (note that
+        electrons flow from negative to positive). The Global
+        Object in this instance is almost like a 9 volt battery providing the
+        source of 'electrons' to our circuit. The electricity flowing through the
+        components starts (and generally* ends) with the electrons flowing back to
+        the positive terminal on the battery. The individual components that make
+        up the circuit could perhaps be likened to the DOM nodes within the event
+        object's 'Propagation Path'. The electons themselves in this instance
+        would be the Event Object, and the target could be compared to something
+        like a lamp (or as it is oft erroneously referred to, a 'light bulb') in
+        the circuit. One flips a power switch (triggers an event) and a light
+        comes on (event object reaches the target node). That may be the most
+        immediately observable effect of engaging the switch, but of course there
+        is more to it than that.
+      </p>
+      <p>
+        Now, one incredibly important thing to note here, is that our 'electrons'
+        in our 'Propagation Path circuit' will <strong>ONLY</strong> flow towards
+        the target. Which is to say, when the event object arrives at a so-called
+        'fork in the road', it will only affect the path that contains its target.
+        For example, in the image of the DOM tree above where the
+        <code>tbody</code> node contains two nested <code>tr</code> nodes which
+        then contain two nested <code>td</code> nodes, one can observe that the
+        'Propagation Path' only moves through the nodes that are nesting the event
+        target.
+      </p>
+      <p>
+        Considering that one of, if not the most, prominent use cases of JS is to
+        make elements interact with each other by way of triggering events,
+        listening for and manipulating those events, it would stand to reason that
+        a fundamental understanding of such, would be requisite for moving forward
+        to more advanced concepts and implementation. At the very least, having a
+        grasp on even just this aspect of the mechanics of event objects has made
+        life easier on me as I learn. I hope that my fellow beginners who stumble
+        upon this piece may find it of some use.
+      </p>
+      <p><strong>Refrences:</strong>
+        <br />
+        <a
+          href=https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture>https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture</a><br />
+        <a
+          href=https://www.kirupa.com/html5/event_capturing_bubbling_javascript.htm>https://www.kirupa.com/html5/event_capturing_bubbling_javascript.htm</a><br />
+        <a href=https://javascript.info/bubbling-and-capturing>https://javascript.info/bubbling-and-capturing</a><br />
+      </p>
+      <sup>* - denotes I realize there may be an exception to this statement of some kind.</sup>
+      <style>
+        html {
+          background-color: #151011;
+        }
+
+        body {
+          color: whitesmoke;
+          text-align: left;
+          margin-right: 25%;
+          margin-left: 20%;
+        }
+      </style>
   </body>
+
 </html>
